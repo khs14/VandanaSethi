@@ -1,7 +1,5 @@
 /* =========================
-   Full Updated CSS — Mobile Centering + Black-space Fixes
-   Includes: modal button spacing + desktop side-by-side modal layout
-   Paste this to replace your existing stylesheet
+   Full Updated CSS — Mobile Centering + Black-space Fixes + Increased Modal Button Spacing + Mobile Nav Close Button
    ========================= */
 
 /* Global Styles and Protection */
@@ -146,6 +144,24 @@ body {
   transform: translateY(-50%);
 }
 
+.mobile-menu-close {
+  display: none;
+  background: none;
+  border: none;
+  color: #d4af37;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-close:hover {
+  transform: rotate(90deg);
+  color: white;
+}
+
 .nav-links {
   display: flex;
   gap: 2rem;
@@ -221,7 +237,7 @@ body {
   gap: 3rem;
   width: 100%;
   align-items: center;
-  justify-items: center; /* center grid children by default */
+  justify-items: center;
 }
 
 .intro-photo-wrapper {
@@ -381,7 +397,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   gap: clamp(1.5rem, 4vw, 2.5rem);
-  justify-items: center; /* center cards by default */
+  justify-items: center;
 }
 
 .artwork-card { cursor: pointer; width: 100%; }
@@ -591,9 +607,30 @@ body {
 
 .modal-description { color: rgba(255, 255, 255, 0.85); line-height: 1.7; font-size: clamp(0.9rem, 2vw, 1rem); font-weight: 300; }
 
-.modal-actions { padding-top: 1.25rem; border-top: 1px solid rgba(212, 175, 55, 0.2); }
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
 
-.availability-text { font-size: clamp(0.8rem, 2vw, 0.9rem); color: rgba(212, 175, 55, 0.9); letter-spacing: 0.15em; margin-bottom: 0.875rem; text-transform: uppercase; }
+.availability-text { 
+  font-size: clamp(0.8rem, 2vw, 0.9rem); 
+  color: rgba(212, 175, 55, 0.9); 
+  letter-spacing: 0.15em; 
+  margin-bottom: 0.5rem; 
+  text-transform: uppercase; 
+}
+
+.modal-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+}
 
 /* Make modal buttons match contact buttons perfectly */
 .modal-button {
@@ -610,6 +647,10 @@ body {
   font-size: clamp(0.85rem, 2vw, 0.95rem) !important;
   letter-spacing: 0.05em;
   cursor: pointer;
+  min-width: 160px;
+  flex: 0 1 auto;
+  text-align: center;
+  justify-content: center;
 }
 
 .modal-button:hover {
@@ -619,29 +660,11 @@ body {
   box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
 }
 
-/* Modal: desktop side-by-side + button spacing
-   — Additions to control spacing between buttons and force desktop two-column layout */
-.modal-actions {
-  display: flex;
-  gap: 1rem;              /* space between buttons */
-  flex-wrap: wrap;        /* wrap on smaller widths */
-  justify-content: center;/* center on mobile/tablet by default */
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-/* Give modal buttons a consistent min-width and allow them to shrink gracefully */
-.modal-actions .modal-button {
-  min-width: 160px;       /* make each button substantial on desktop */
-  flex: 0 1 auto;         /* allow shrinking on smaller viewports */
-  text-align: center;
-}
-
 /* Desktop layout: show photo and details side-by-side */
 @media (min-width: 1024px) {
   .modal-grid {
-    grid-template-columns: 1fr 1fr; /* left: image, right: details */
-    gap: 2.5rem;                    /* space between columns */
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
     align-items: center;
     justify-items: stretch;
     padding: clamp(2rem, 5vw, 3rem);
@@ -655,9 +678,9 @@ body {
   }
 
   .modal-image-container {
-    max-height: 70vh;   /* keep image reasonably sized on tall screens */
+    max-height: 70vh;
     width: 100%;
-    max-width: 640px;   /* limit extreme widths */
+    max-width: 640px;
   }
 
   .modal-details {
@@ -666,15 +689,18 @@ body {
     padding: 0;
   }
 
-  /* Align modal buttons to the start (left) on desktop so they sit under the text */
   .modal-actions {
+    align-items: flex-start;
+  }
+
+  .modal-buttons {
     justify-content: flex-start;
   }
 }
 
 /* Slight tweak: if the modal is very narrow but still >=1024, ensure buttons don't overflow */
 @media (min-width: 1024px) and (max-width: 1120px) {
-  .modal-actions .modal-button { min-width: 140px; }
+  .modal-button { min-width: 140px !important; }
 }
 
 /* Animations */
@@ -697,7 +723,6 @@ body {
 
   .shine-element { filter: blur(40px); display: none; }
 
-  /* Centering fixes */
   .intro-layout { grid-template-columns: 1fr; justify-items: center; align-items: center; text-align: center; gap: 2rem; }
   .intro-content, .section-content, .contact-content { width: min(100%, 920px); margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; box-sizing: border-box; }
   .intro-photo-wrapper { margin-left: auto; margin-right: auto; display: block; max-width: 420px; width: 90%; }
@@ -705,10 +730,8 @@ body {
   .modal-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; }
   .card-inner, .modal-content { width: 100%; margin: 0 auto; }
 
-  /* Fix black-bottom space issues by removing forced min-heights */
   .artwork-section, .contact-section { min-height: auto; padding-bottom: 3rem; }
 
-  /* Small-scale adjustments to artist name */
   .artist-name {
     font-size: clamp(1.6rem, 10vw, 3rem);
     letter-spacing: clamp(0.04em, 0.12em, 0.18em);
@@ -718,6 +741,9 @@ body {
     word-break: break-word;
     transform: none !important;
   }
+
+  .modal-buttons { flex-direction: column; gap: 1rem; }
+  .modal-button { width: 100%; min-width: auto !important; }
 }
 
 /* Small Devices (phones, 481px to 767px) */
@@ -733,7 +759,6 @@ body {
     letter-spacing: clamp(0.05em, 0.13em, 0.2em);
   }
 
-  /* Ensure nav links slide in and don't push layout */
   .nav-links { right: -100%; }
   .nav-links.open { right: 0; }
 }
@@ -751,6 +776,7 @@ body {
 @media (max-width: 768px) {
   .nav-bar { position: fixed; width: 100%; top: 0; left: 0; right: 0; }
   .mobile-menu-toggle { display: block; }
+  .mobile-menu-close { display: block; }
   .nav-links {
     position: fixed;
     top: 0;
@@ -787,7 +813,6 @@ body {
   .modal-grid { text-align: center; justify-items: center; }
   .modal-details { text-align: center; align-items: center; }
 
-  /* Footer centering — ensure contact area is exactly centered */
   .contact-section {
     display: flex !important;
     justify-content: center !important;
