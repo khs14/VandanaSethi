@@ -351,6 +351,8 @@ const App = () => {
           <div className="intro-header">
             <h1 className="artist-name">VANDANA SETHI</h1>
             <div className="artist-subtitle">Contemporary Artist</div>
+            <div className="artist-subtitle">Nature & Divinity on Canvas</div>
+            
           </div>
           
           <div className="intro-layout">
@@ -370,16 +372,13 @@ const App = () => {
             <div className="intro-text-content">
               <div className="intro-text">
                 <p>
-                  Vandana Sethi is a contemporary artist whose work explores the intersection of light, 
-                  color, and emotion. Through her distinctive use of mixed media and bold compositional 
-                  choices, she creates pieces that invite viewers into contemplative spaces where 
-                  abstraction meets narrative.
+                  Vandana’s art spans acrylics, watercolors, abstract compositions, and textured mixed media, painted across canvas, paper, marble, and glass. 
+                  Drawing inspiration from Hindu mythology and the beauty of nature, her work brings together the spiritual and the earthly in harmonious, vibrant forms.
                 </p>
                 <p>
-                  Her art has been featured in numerous exhibitions and private collections, 
-                  each piece reflecting a deep engagement with the natural world and urban landscapes. 
-                  Working primarily with acrylics, oils, and mixed media, Vandana crafts layered 
-                  compositions that reveal new dimensions with each viewing.
+                 Several of Vandana’s works include custom, high-value framing and premium finishes. 
+                 As each piece is unique, prices are discussed individually with interested collectors. 
+                Please contact us for inquiries, availability, and purchase information.
                 </p>
               </div>
             </div>
