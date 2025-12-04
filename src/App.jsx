@@ -420,6 +420,7 @@ const App = () => {
                           className="artwork-image"
                           draggable="false"
                         />
+                        <div className="watermark">VANDANA SETHI © 2025</div>
                       </div>
                       <div className={`artwork-overlay ${hoveredId === art.id ? 'visible' : ''}`}>
                         <div className="overlay-content">
@@ -490,6 +491,7 @@ const App = () => {
                     className="modal-image"
                     draggable="false"
                   />
+                  <div className="watermark">VANDANA SETHI © 2025</div>
                 </div>
               </div>
               
