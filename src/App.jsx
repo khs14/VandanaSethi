@@ -277,14 +277,24 @@ const App = () => {
           </button>
 
           <button 
+            type="button"
             className="mobile-menu-toggle"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => setMobileMenuOpen(prev => !prev)}
             aria-label="Toggle menu"
           >
             <Menu size={24} />
           </button>
 
           <div className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
+            <button 
+                type="button"
+                className="mobile-menu-close"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={24} />
+              </button>
+            
             <button 
               onClick={() => scrollToSection('intro')}
               className={activeSection === 'intro' ? 'active' : ''}
@@ -304,6 +314,11 @@ const App = () => {
               Contact
             </button>
           </div>
+          
+          <div 
+            className={`mobile-menu-overlay ${mobileMenuOpen ? 'open' : ''}`}
+            onClick={() => setMobileMenuOpen(false)}
+          ></div>
         </div>
       </nav>
 
