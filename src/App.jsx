@@ -287,15 +287,6 @@ const App = () => {
 
           <div className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
             <button 
-                type="button"
-                className="mobile-menu-close"
-                onClick={() => setMobileMenuOpen(false)}
-                aria-label="Close menu"
-              >
-                <X size={24} />
-              </button>
-            
-            <button 
               onClick={() => scrollToSection('intro')}
               className={activeSection === 'intro' ? 'active' : ''}
             >
@@ -314,7 +305,16 @@ const App = () => {
               Contact
             </button>
           </div>
-          
+          {mobileMenuOpen && (
+              <button 
+                type="button"
+                className="mobile-menu-close"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={24} />
+              </button>
+            )}
           <div 
             className={`mobile-menu-overlay ${mobileMenuOpen ? 'open' : ''}`}
             onClick={() => setMobileMenuOpen(false)}
