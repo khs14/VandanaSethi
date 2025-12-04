@@ -13,31 +13,52 @@ const App = () => {
     const preventDefault = (e) => e.preventDefault();
     
     const handleKeyDown = (e) => {
+      const ctrlKey = e.ctrlKey || e.metaKey;
+      
+      // Block Developer Tools / Inspect Element / Save / Print / Screenshots
       if (
+        // F12 - DevTools
+        e.key === 'F12' ||
+        // Ctrl+Shift+I / Cmd+Option+I - Inspect Element
+        (ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) ||
+        (e.metaKey && e.altKey && (e.key === 'I' || e.key === 'i')) ||
+        // Ctrl+Shift+J / Cmd+Option+J - Console
+        (ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) ||
+        (e.metaKey && e.altKey && (e.key === 'J' || e.key === 'j')) ||
+        // Ctrl+Shift+C / Cmd+Option+C - Element Picker
+        (ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) ||
+        (e.metaKey && e.altKey && (e.key === 'C' || e.key === 'c')) ||
+        // Ctrl+U / Cmd+U - View Source
+        (ctrlKey && (e.key === 'U' || e.key === 'u')) ||
+        // Ctrl+S / Cmd+S - Save Page
+        (ctrlKey && (e.key === 'S' || e.key === 's')) ||
+        // PrintScreen - Screenshot
         e.key === 'PrintScreen' ||
-        (e.ctrlKey && e.key === 's') ||
-        (e.ctrlKey && e.shiftKey && e.key === 's') ||
-        (e.metaKey && e.key === 's') ||
-        (e.metaKey && e.shiftKey && e.key === 's')
+        // Ctrl+P / Cmd+P - Print
+        (ctrlKey && (e.key === 'P' || e.key === 'p'))
       ) {
         e.preventDefault();
-        alert('Screenshots and saving are disabled to protect the artwork.');
+        e.stopPropagation();
+        return false;
+      }
+    };
+
+    const handleKeyUp = (e) => {
+      if (e.key === 'PrintScreen') {
+        navigator.clipboard.writeText('');
       }
     };
 
     document.addEventListener('contextmenu', preventDefault);
     document.addEventListener('dragstart', preventDefault);
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('keyup', (e) => {
-      if (e.key === 'PrintScreen') {
-        navigator.clipboard.writeText('');
-      }
-    });
+    document.addEventListener('keydown', handleKeyDown, true);
+    document.addEventListener('keyup', handleKeyUp, true);
 
     return () => {
       document.removeEventListener('contextmenu', preventDefault);
       document.removeEventListener('dragstart', preventDefault);
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown, true);
+      document.removeEventListener('keyup', handleKeyUp, true);
     };
   }, []);
 
