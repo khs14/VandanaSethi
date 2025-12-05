@@ -360,7 +360,7 @@ const App = () => {
               <div className="intro-photo-frame">
                 <div className="intro-photo-spotlight"></div>
                 <img 
-                  src="/image.jpg"
+                  src="/image.png"
                   alt="Vandana Sethi"
                   className="intro-photo"
                   draggable="false"
